@@ -1,7 +1,3 @@
-# CloudStorage
-
-## Application configure
-```yaml
 providers:
   alibaba:
     appid: alibaba-app-id
@@ -22,4 +18,3 @@ providers:
     scopes:
       - basic
       - netdisk
-```
