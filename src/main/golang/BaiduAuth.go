@@ -7,15 +7,11 @@ import (
 	"strings"
 )
 
-type BaiduAuth struct {
+type baiduAuth struct {
 	properties configuration.CloudProperties
 }
 
-func NewBaiduAuth(properties configuration.Properties) *BaiduAuth {
-	return &BaiduAuth{properties.Provider.Baidu}
-}
-
-func (receiver BaiduAuth) GetAuthorizePage() string {
+func (receiver baiduAuth) GetAuthorizePage() string {
 
 	uri := "oauth/2.0/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=%s&device_id=%s"
 
@@ -32,6 +28,6 @@ func (receiver BaiduAuth) GetAuthorizePage() string {
 	return receiver.properties.BaseUrl() + uri
 }
 
-func (receiver BaiduAuth) Authorize(code string) (collection.Map[string, string], Throwable) {
+func (receiver baiduAuth) Authorize(code string) (collection.Map[string, string], Throwable) {
 	return nil, nil
 }

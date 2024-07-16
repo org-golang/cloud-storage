@@ -11,15 +11,11 @@ import (
 	"strings"
 )
 
-type AlibabaAuth struct {
+type alibabaAuth struct {
 	properties configuration.ApplicationProperties
 }
 
-func NewAlibabaAuth(properties configuration.Properties) *AlibabaAuth {
-	return &AlibabaAuth{properties: properties.Provider.Alibaba}
-}
-
-func (auth AlibabaAuth) GetAuthorizePage() string {
+func (auth alibabaAuth) GetAuthorizePage() string {
 
 	uri := "oauth/authorize?client_id=%s&redirect_uri=%s&scope=%s"
 
@@ -33,7 +29,7 @@ func (auth AlibabaAuth) GetAuthorizePage() string {
 	return auth.properties.BaseUrl() + uri
 }
 
-func (auth AlibabaAuth) Authorize(code string) (collection.Map[string, string], Throwable) {
+func (auth alibabaAuth) Authorize(code string) (collection.Map[string, string], Throwable) {
 
 	uri := auth.properties.BaseUrl() + "oauth/access_token"
 
@@ -51,7 +47,7 @@ func (auth AlibabaAuth) Authorize(code string) (collection.Map[string, string], 
 	defer response.Body.Close()
 
 	if err != nil {
-		return collection.NewHashMap[string, string](), throwNewException(err.Error(), Error).throw(true)
+		return collection.NewHashMap[string, string](), throwNewRuntimeException(err.Error(), Error)
 	}
 
 	result, _ := io.ReadAll(response.Body)
@@ -61,7 +57,7 @@ func (auth AlibabaAuth) Authorize(code string) (collection.Map[string, string], 
 	err = json.Unmarshal(result, &resp.Values)
 
 	if err != nil {
-		return nil, throwNewException(err.Error(), Error).throw(true)
+		return nil, throwNewRuntimeException(err.Error(), Error)
 	}
 
 	return resp, throwNewException("", Success)

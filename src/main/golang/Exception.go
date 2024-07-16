@@ -13,8 +13,12 @@ type exception struct {
 	error bool
 }
 
-func throwNewException(message string, status uint16) *exception {
+func throwNewException(message string, status uint16) Throwable {
 	return &exception{message, status, false}
+}
+
+func throwNewRuntimeException(message string, status uint16) Throwable {
+	return &exception{message, status, true}
 }
 
 func (e *exception) GetMessage() string {
@@ -27,10 +31,4 @@ func (e *exception) GetStatus() uint16 {
 
 func (e *exception) Error() bool {
 	return e.error
-}
-
-func (e *exception) throw(throw bool) Throwable {
-	e.error = throw
-
-	return e
 }
