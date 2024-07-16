@@ -15,6 +15,10 @@ type AlibabaAuth struct {
 	properties configuration.ApplicationProperties
 }
 
+func NewAlibabaAuth(properties configuration.Properties) *AlibabaAuth {
+	return &AlibabaAuth{properties: properties.Provider.Alibaba}
+}
+
 func (auth AlibabaAuth) GetAuthorizePage() string {
 
 	uri := "oauth/authorize?client_id=%s&redirect_uri=%s&scope=%s"

@@ -3,7 +3,7 @@ providers:
     appid: alibaba-app-id
     secret: alibaba-app-secret
     callback: https://alibaba.com
-    base-url: https://alibaba.com
+    base-url: https://openapi.alipan.com
     scopes:
       - user:base
       - file:all:read
