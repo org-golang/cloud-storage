@@ -1,8 +1,8 @@
 providers:
   alibaba:
-    appid: alibaba-app-id
-    secret: alibaba-app-secret
-    callback: https://alibaba.com
+    appid: 508dcedc4b6e41c1b120355ae7b8c550
+    secret: f122bc6a7b2a48c79c81f77eaa3ac49c
+    callback: http://assignment-store.huabanshou.cn/api/tests #该地址应与阿里云盘开发者门户配置的一致,不能一个http一个https
     base-url: https://openapi.alipan.com
     scopes:
       - user:base

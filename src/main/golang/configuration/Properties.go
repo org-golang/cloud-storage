@@ -1,6 +1,7 @@
 package configuration
 
 import (
+	"github.com/org-golang/cloud-storage/src/main/golang/lang"
 	"gopkg.in/yaml.v3"
 	"os"
 )
@@ -18,7 +19,7 @@ func BuildProperties(filePath string) Properties {
 
 	file, err := os.ReadFile(filePath)
 
-	if err != nil {
+	if lang.IsNonNil(err) {
 		panic(err)
 	}
 
@@ -26,7 +27,7 @@ func BuildProperties(filePath string) Properties {
 
 	err = yaml.Unmarshal(file, &properties)
 
-	if err != nil {
+	if lang.IsNonNil(err) {
 		panic(err)
 	}
 

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/org-golang/cloud-storage/src/main/golang/collection"
 	"github.com/org-golang/cloud-storage/src/main/golang/configuration"
+	"github.com/org-golang/cloud-storage/src/main/golang/lang"
 	"strings"
 )
 
@@ -28,6 +29,6 @@ func (receiver baiduAuth) GetAuthorizePage() string {
 	return receiver.properties.BaseUrl() + uri
 }
 
-func (receiver baiduAuth) Authorize(code string) (collection.Map[string, string], Throwable) {
+func (receiver baiduAuth) Authorize(code string) (collection.Map[string, string], lang.Throwable) {
 	return nil, nil
 }
