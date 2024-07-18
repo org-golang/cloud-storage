@@ -1,4 +1,4 @@
-package golang
+package lang
 
 type Throwable interface {
 
@@ -7,7 +7,4 @@ type Throwable interface {
 
 	// GetStatus Get exception error code.
 	GetStatus() uint16
-
-	// Error Determine if an exception is thrown.
-	Error() bool
 }
