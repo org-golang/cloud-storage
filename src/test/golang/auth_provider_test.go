@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/org-golang/cloud-storage/src/main/golang"
 	"github.com/org-golang/cloud-storage/src/main/golang/configuration"
+	"github.com/org-golang/cloud-storage/src/main/golang/lang"
 	"strings"
 	"testing"
 )
@@ -18,7 +19,7 @@ func TestCreateAuthorizePageUrl(t *testing.T) {
 
 	alibaba, err := golang.NewAuthProvider(properties, golang.ALIBABA)
 
-	if golang.IsNonNil(err) {
+	if lang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
@@ -28,7 +29,7 @@ func TestCreateAuthorizePageUrl(t *testing.T) {
 
 	baidu, err := golang.NewAuthProvider(properties, golang.BAIDU)
 
-	if golang.IsNonNil(err) {
+	if lang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
@@ -42,15 +43,16 @@ func TestCreateAuthorizePageUrl(t *testing.T) {
 }
 
 func TestGetAccessToken(t *testing.T) {
+
 	alibaba, err := golang.NewAuthProvider(properties, golang.ALIBABA)
 
-	if golang.IsNonNil(err) {
+	if lang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
 	res, err := alibaba.Authorize("cf73b577bb7f4761a2a0b2c5d0d5acd8")
 
-	if golang.IsNonNil(err) {
+	if lang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
