@@ -8,13 +8,17 @@ import (
 	"testing"
 )
 
-func TestAuth(t *testing.T) {
+var properties configuration.Properties
 
-	properties := configuration.BuildProperties("./cloud.yaml")
+func init() {
+	properties = configuration.BuildProperties("./cloud.yaml")
+}
+
+func TestCreateAuthorizePageUrl(t *testing.T) {
 
 	alibaba, err := golang.NewAuthProvider(properties, golang.ALIBABA)
 
-	if err.Error() {
+	if golang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
@@ -24,7 +28,7 @@ func TestAuth(t *testing.T) {
 
 	baidu, err := golang.NewAuthProvider(properties, golang.BAIDU)
 
-	if err.Error() {
+	if golang.IsNonNil(err) {
 		t.Error(err.GetMessage())
 	}
 
@@ -34,4 +38,21 @@ func TestAuth(t *testing.T) {
 
 	fmt.Println(alibaba.GetAuthorizePage())
 	fmt.Println(baidu.GetAuthorizePage())
+
+}
+
+func TestGetAccessToken(t *testing.T) {
+	alibaba, err := golang.NewAuthProvider(properties, golang.ALIBABA)
+
+	if golang.IsNonNil(err) {
+		t.Error(err.GetMessage())
+	}
+
+	res, err := alibaba.Authorize("cf73b577bb7f4761a2a0b2c5d0d5acd8")
+
+	if golang.IsNonNil(err) {
+		t.Error(err.GetMessage())
+	}
+
+	fmt.Println(res)
 }
