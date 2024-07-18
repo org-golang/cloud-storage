@@ -6,6 +6,8 @@ type Map[K int | string, V any] interface {
 	Get(K) V
 
 	Put(K, V) Map[K, V]
+
+	Contains(K) bool
 }
 
 func NewHashMap[K int | string, V any]() *HashMap[K, V] {

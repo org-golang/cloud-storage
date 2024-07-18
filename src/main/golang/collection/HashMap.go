@@ -13,3 +13,10 @@ func (h *HashMap[K, V]) Put(key K, value V) Map[K, V] {
 
 	return h
 }
+
+func (h *HashMap[K, V]) Contains(key K) bool {
+
+	_, ok := h.Values[key]
+
+	return ok
+}
